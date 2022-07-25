@@ -125,7 +125,7 @@ contract MyLockableToken is ILockable, Initializable, OwnableUpgradeable, ERC721
   }
 
   function setApprovalForAll(address operator, bool approved) public override {
-    require(!hasLocks(_msgSender()), "at least one asset is locked");
+    require(!approved || !hasLocks(_msgSender()), "at least one asset is locked");
     super.setApprovalForAll(operator, approved);
   }
 
