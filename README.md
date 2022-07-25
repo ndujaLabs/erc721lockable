@@ -85,7 +85,7 @@ As soon as I have a moment, I will add an example here and move the testing.
 
 ## Implementations
 
-1. **Everdragons2GenesisV3** https://github.com/ndujaLabs/everdragons2-core/blob/main/contracts/V2-V3/Everdragons2GenesisV3.sol
+1. **Everdragons2GenesisV3** https://github.com/ndujaLabs/everdragons2-core/blob/main/contracts/V2-V3/Everdragons2GenesisV3.sol#L99
 
 Feel free to make a PR to add your contracts.
 
