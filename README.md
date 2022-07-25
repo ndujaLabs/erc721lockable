@@ -15,6 +15,7 @@ pragma solidity ^0.8.4;
 // Author:
 // Francesco Sullo <francesco@sullo.co>
 
+// ERC165 interface id is 0xd8e4c296
 interface ILockable {
   event LockerSet(address locker);
   event LockerRemoved(address locker);
