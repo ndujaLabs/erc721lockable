@@ -1,0 +1,45 @@
+{
+  "name": "lockable",
+  "version": "0.0.1",
+  "description": "A simple approach to lock NFT in place w/out losing ownership",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "/contracts/**/*.sol"
+  ],
+  "scripts": {
+    "test": "npx hardhat test",
+    "compile": "npx hardhat compile",
+    "lint": "prettier --write 'contracts/**/*.sol' && solhint 'contracts/**/*.sol'",
+    "format": "npx prettier --write ./test/fixtures/**/*.js ./**/*.js"
+  },
+  "author": "Francesco Sullo <francesco@sullo.co>",
+  "license": "MIT",
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.3",
+    "@nomiclabs/hardhat-etherscan": "^2.1.8",
+    "@nomiclabs/hardhat-waffle": "^2.0.1",
+    "@openzeppelin/contracts": "^4.5.0",
+    "@openzeppelin/contracts-upgradeable": "^4.7.1",
+    "@openzeppelin/hardhat-upgrades": "^1.19.0",
+    "chai": "^4.3.4",
+    "ethereum-waffle": "^3.4.0",
+    "ethers": "^5.5.2",
+    "hardhat": "^2.7.1",
+    "hardhat-contract-sizer": "^2.4.0",
+    "hardhat-gas-reporter": "^1.0.6",
+    "husky": "^8.0.0",
+    "prettier": "^2.5.1",
+    "prettier-plugin-solidity": "^1.0.0-beta.19",
+    "pretty-quick": "^3.1.3",
+    "require-or-mock": "^0.2.1",
+    "solhint": "^3.3.6",
+    "solidity-coverage": "^0.7.21",
+    "soliutils": "^0.0.4",
+    "typescript": "^4.7.3"
+  },
+  "lint-staged": {
+    "*.js": "prettier --write"
+  }
+}

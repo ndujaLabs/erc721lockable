@@ -1,0 +1,9 @@
+# Ignore artifacts:
+build
+coverage
+_sullof
+localdb
+tmp
+pnpm-lock.yaml
+package-lock.json
+public/bundle
