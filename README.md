@@ -1,8 +1,6 @@
 # Lockable
 A simple approach to lock NFTs without transferring the ownership
 
-### THIS IS A WORK IN PROGRESS
-
 ## Why
 
 If you stake an NFT to earn some yield, you trasnfer the ownership of the NFT to a pool. That is not ideal because you may lose voting power and other benefits coming from owning a token. The solution is to lock the NFT in place so that it cannot be transferred or approved to be listed on marketplaces. Many are implementing something in the same space. This is the way I implemented it in the Everdragons2 Governance token and in the Mobland in-game assets.
