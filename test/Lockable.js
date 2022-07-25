@@ -21,6 +21,8 @@ describe("Lockable", function () {
 
     // TODO
 
+    expect(await myToken.getInterfaceId()).equal("0xd8e4c296")
+
 
   });
 
