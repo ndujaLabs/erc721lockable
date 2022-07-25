@@ -75,6 +75,10 @@ To use it, in your smart contract import it as
 import "@ndujalabs/lockable/contracts/ILockable.sol";
 ```
 
+## Examples
+
+For an example of an upgradeable token, look at https://github.com/ndujaLabs/lockable/blob/main/contracts/examples/MyLockableToken.sol
+
 ## Testing
 
 You can find testing for the various functions in https://github.com/ndujaLabs/everdragons2-core/blob/main/test/Everdragons2GenesisV3.test.js#L99
@@ -82,8 +86,6 @@ You can find testing for the various functions in https://github.com/ndujaLabs/e
 As soon as I have a moment, I will add an example here and move the testing.
 
 ## Implementations
-
-Look at an example of an upgradeable token in `/examples`.
 
 1. **Everdragons2GenesisV3** https://github.com/ndujaLabs/everdragons2-core/blob/main/contracts/V2-V3/Everdragons2GenesisV3.sol#L99
 
