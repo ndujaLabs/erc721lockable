@@ -74,7 +74,7 @@ You may need to install the peer dependencies too, i.e., the OpenZeppelin contra
 To use it, in your smart contract import it as
 ```solidity
 
-import "lockable/contracts/ILockable.sol";
+import "@ndujalabs/lockable/contracts/ILockable.sol";
 ```
 
 ## Testing

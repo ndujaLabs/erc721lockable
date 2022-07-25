@@ -1,5 +1,5 @@
 {
-  "name": "lockable",
+  "name": "@ndujalabs/lockable",
   "version": "0.0.1",
   "description": "A simple approach to lock NFT in place w/out losing ownership",
   "publishConfig": {
