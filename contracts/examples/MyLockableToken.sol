@@ -136,4 +136,8 @@ contract MyLockableToken is ILockable, Initializable, OwnableUpgradeable, ERC721
     return super.isApprovedForAll(owner, operator);
   }
 
+  function getInterfaceId() external view returns (bytes4){
+    return type(ILockable).interfaceId;
+  }
+
 }

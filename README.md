@@ -72,8 +72,8 @@ npm i -d attributable
 You may need to install the peer dependencies too, i.e., the OpenZeppelin contracts.
 
 To use it, in your smart contract import it as
-```solidity
 
+```solidity
 import "@ndujalabs/lockable/contracts/ILockable.sol";
 ```
 
