@@ -18,7 +18,7 @@ contract MyLockableToken is ILockable, Initializable, OwnableUpgradeable, ERC721
   mapping(address => bool) public pools;
   mapping(uint256 => address) public staked;
 
-  modifier onlyPool() {
+  modifier onlyLocker() {
     require(pools[_msgSender()], "Forbidden");
     _;
   }
@@ -87,7 +87,7 @@ contract MyLockableToken is ILockable, Initializable, OwnableUpgradeable, ERC721
     return false;
   }
 
-  function lock(uint256 tokenId) external override onlyPool {
+  function lock(uint256 tokenId) external override onlyLocker {
     // locker must be approved to mark the token as locked
     require(isLocker(_msgSender()), "Not an authorized locker");
     require(getApproved(tokenId) == _msgSender() || isApprovedForAll(ownerOf(tokenId), _msgSender()), "Locker not approved");
@@ -95,7 +95,7 @@ contract MyLockableToken is ILockable, Initializable, OwnableUpgradeable, ERC721
     emit Locked(tokenId);
   }
 
-  function unlock(uint256 tokenId) external override onlyPool {
+  function unlock(uint256 tokenId) external override onlyLocker {
     // will revert if token does not exist
     require(staked[tokenId] == _msgSender(), "wrong locker");
     delete staked[tokenId];
