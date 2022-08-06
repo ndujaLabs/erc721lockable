@@ -1,6 +1,6 @@
 {
   "name": "@ndujalabs/lockable",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A simple approach to lock NFT in place w/out losing ownership",
   "publishConfig": {
     "access": "public"

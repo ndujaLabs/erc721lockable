@@ -78,7 +78,7 @@ import "@ndujalabs/lockable/contracts/ILockable.sol";
 
 ## Examples
 
-For an example of an upgradeable token, look at https://github.com/ndujaLabs/lockable/blob/main/contracts/examples/MyLockableToken.sol
+In '/contracts' there are "Lockable.sol" and "LockableUpgradeable.sol". Both can be extended and used as is.
 
 ## Testing
 
