@@ -1,5 +1,5 @@
-const {expect, assert} = require("chai");
-const {deployContract, deployContractUpgradeable} = require("./helpers");
+const {expect} = require("chai");
+const { deployContractUpgradeable} = require("./helpers");
 
 describe("Lockable", function () {
   let myPool;
@@ -14,14 +14,12 @@ describe("Lockable", function () {
 
   beforeEach(async function () {
     // myPool = await deployContract("MyPlayer");
-    myToken = await deployContractUpgradeable("MyLockableToken");
+    myToken = await deployContractUpgradeable("LockableUpgradeable", ["My token", "NFT"]);
   });
 
   it("should verify the flow", async function () {
 
-    // TODO
-
-    expect(await myToken.getInterfaceId()).equal("0xd8e4c296")
+    expect(await myToken.supportsInterface("0xd8e4c296")).equal(true)
 
 
   });

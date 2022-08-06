@@ -70,15 +70,24 @@ npm i -d attributable
 
 You may need to install the peer dependencies too, i.e., the OpenZeppelin contracts.
 
-To use it, in your smart contract import it as
+To use the interface, in your smart contract import it as
 
 ```solidity
 import "@ndujalabs/lockable/contracts/ILockable.sol";
 ```
 
-## Examples
+and implement the required functions.
 
-For an example of an upgradeable token, look at https://github.com/ndujaLabs/lockable/blob/main/contracts/examples/MyLockableToken.sol
+In '/contracts' there are "Lockable.sol" and "LockableUpgradeable.sol".  
+Both can be extended and used as is, like
+
+```solidity
+import "@ndujalabs/lockable/contracts/Lockable.sol";
+
+contract MyToken is Lockable {
+  ...
+```
+
 
 ## Testing
 
