@@ -14,7 +14,7 @@ describe("Lockable", function () {
 
   beforeEach(async function () {
     // myPool = await deployContract("MyPlayer");
-    myToken = await deployContractUpgradeable("LockableUpgradeable", ["My token", "NFT"]);
+    myToken = await deployContractUpgradeable("LockableUpgradeableMock", ["My token", "NFT"]);
   });
 
   it("should verify the flow", async function () {
