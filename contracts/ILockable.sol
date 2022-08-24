@@ -6,7 +6,6 @@ pragma solidity ^0.8.4;
 
 // ERC165 interface id is 0xd8e4c296
 interface ILockable {
-
   event LockerSet(address locker);
   event LockerRemoved(address locker);
   event ForcefullyUnlocked(uint256 tokenId);
