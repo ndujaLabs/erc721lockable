@@ -103,6 +103,11 @@ Feel free to make a PR to add your contracts.
 
 ## History
 
+**0.0.4**
+- remove `initialize` (which was used in the example) and use `__Lockable_init` to allow extensions
+- add `__gap` at the end of `LockableUpgradeable`
+- add mock to allow testing
+
 **0.0.3**
 - `Lockable.getApproved` does not return address(0) if the token is locked but the caller is the locker. This allows the locker to stake the token transferring it.
 - Makes function in `Lockable` virtual to be overridden if necessary
