@@ -101,6 +101,12 @@ As soon as I have a moment, I will add an example here and move the testing.
 
 Feel free to make a PR to add your contracts.
 
+## History
+
+**0.0.3**
+- `Lockable.getApproved` does not return address(0) if the token is locked but the caller is the locker. This allows the locker to stake the token transferring it.
+- Makes function in `Lockable` virtual to be overriden if necessary
+
 ## Copyright
 
 (c) 2022, Francesco Sullo <francesco@sullo.co>
