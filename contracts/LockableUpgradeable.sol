@@ -30,11 +30,15 @@ contract LockableUpgradeable is
     _;
   }
 
-  /// @custom:oz-upgrades-unsafe-allow constructor
-  constructor() initializer {}
+  /**
+     * @dev Initializes the contract by setting a `name` and a `symbol` to the token collection.
+     */
+  function __Lockable_init(string memory name_, string memory symbol_) internal onlyInitializing {
+    __Lockable_init_unchained(name_, symbol_);
+  }
 
-  function initialize(string memory name, string memory symbol) public initializer {
-    __ERC721_init(name, symbol);
+  function __Lockable_init_unchained(string memory name_, string memory symbol_) internal onlyInitializing {
+    __ERC721_init(name_, symbol_);
     __Ownable_init();
   }
 
@@ -141,4 +145,6 @@ contract LockableUpgradeable is
     }
     return super.isApprovedForAll(owner, operator);
   }
+
+  uint256[50] private __gap;
 }
