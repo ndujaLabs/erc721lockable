@@ -3,37 +3,63 @@ pragma solidity 0.8.11;
 
 // Authors: Francesco Sullo <francesco@sullo.co>
 
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
-import "@openzeppelin/contracts/utils/Address.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC721/extensions/ERC721EnumerableUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 
-import "./ILockable.sol";
+import "./IERC721Lockable.sol";
 
-contract Lockable is ILockable, Ownable, ERC721, ERC721Enumerable {
-  using Address for address;
+contract ERC721LockableUpgradeable is
+  IERC721Lockable,
+  Initializable,
+  OwnableUpgradeable,
+  ERC721Upgradeable,
+  ERC721EnumerableUpgradeable,
+  UUPSUpgradeable
+{
+  using AddressUpgradeable for address;
 
   mapping(address => bool) private _locker;
   mapping(uint256 => address) private _lockedBy;
 
   modifier onlyLocker() {
-    require(_locker[_msgSender()], "Not a locker");
+    require(_locker[_msgSender()], "Forbidden");
     _;
   }
 
-  constructor(string memory name, string memory symbol) ERC721(name, symbol) {}
+  /**
+     * @dev Initializes the contract by setting a `name` and a `symbol` to the token collection.
+     */
+  function __ERC721Lockable_init(string memory name_, string memory symbol_) internal onlyInitializing {
+    __ERC721Lockable_init_unchained(name_, symbol_);
+  }
+
+  function __ERC721Lockable_init_unchained(string memory name_, string memory symbol_) internal onlyInitializing {
+    __ERC721_init(name_, symbol_);
+    __Ownable_init();
+  }
+
+  function _authorizeUpgrade(address newImplementation) internal virtual override onlyOwner {}
 
   function _beforeTokenTransfer(
     address from,
     address to,
     uint256 tokenId
-  ) internal override(ERC721, ERC721Enumerable) {
+  ) internal override(ERC721Upgradeable, ERC721EnumerableUpgradeable) {
     require(!isLocked(tokenId), "Token is locked");
     super._beforeTokenTransfer(from, to, tokenId);
   }
 
-  function supportsInterface(bytes4 interfaceId) public view override(ERC721, ERC721Enumerable) returns (bool) {
-    return interfaceId == type(ILockable).interfaceId || super.supportsInterface(interfaceId);
+  function supportsInterface(bytes4 interfaceId)
+    public
+    view
+    override(ERC721Upgradeable, ERC721EnumerableUpgradeable)
+    returns (bool)
+  {
+    return interfaceId == type(IERC721Lockable).interfaceId || super.supportsInterface(interfaceId);
   }
 
   function isLocked(uint256 tokenId) public view virtual override returns (bool) {
@@ -119,4 +145,6 @@ contract Lockable is ILockable, Ownable, ERC721, ERC721Enumerable {
     }
     return super.isApprovedForAll(owner, operator);
   }
+
+  uint256[50] private __gap;
 }
