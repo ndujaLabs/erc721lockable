@@ -105,6 +105,9 @@ Feel free to make a PR to add your implementation.
 
 ## History
 
+**0.1.2**
+- Use `pragma solidity ^0.8.0;` instead of specific version
+
 **0.1.1**
 - Adding repo to package.json
 
