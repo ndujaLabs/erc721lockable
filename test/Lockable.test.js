@@ -1,7 +1,7 @@
 const {expect} = require("chai");
 const { deployContractUpgradeable} = require("./helpers");
 
-describe("Lockable", function () {
+describe("ERC721Lockable", function () {
   let myPool;
   let myToken;
 
@@ -14,13 +14,12 @@ describe("Lockable", function () {
 
   beforeEach(async function () {
     // myPool = await deployContract("MyPlayer");
-    myToken = await deployContractUpgradeable("LockableUpgradeableMock", ["My token", "NFT"]);
+    myToken = await deployContractUpgradeable("ERC721LockableUpgradeableMock", ["My token", "NFT"]);
   });
 
   it("should verify the flow", async function () {
 
     expect(await myToken.supportsInterface("0xd8e4c296")).equal(true)
-
 
   });
 

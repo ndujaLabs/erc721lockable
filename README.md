@@ -1,4 +1,4 @@
-# Lockable
+# ERC721Lockable
 A simple approach to lock NFTs without transferring the ownership
 
 ## Why
@@ -16,7 +16,7 @@ pragma solidity ^0.8.4;
 // Francesco Sullo <francesco@sullo.co>
 
 // ERC165 interface id is 0xd8e4c296
-interface ILockable {
+interface IERC721Lockable {
   event LockerSet(address locker);
   event LockerRemoved(address locker);
   event ForcefullyUnlocked(uint256 tokenId);
@@ -73,18 +73,18 @@ You may need to install the peer dependencies too, i.e., the OpenZeppelin contra
 To use the interface, in your smart contract import it as
 
 ```solidity
-import "@ndujalabs/lockable/contracts/ILockable.sol";
+import "@ndujalabs/lockable/contracts/IERC721Lockable.sol";
 ```
 
 and implement the required functions.
 
-In '/contracts' there are "Lockable.sol" and "LockableUpgradeable.sol".  
+In '/contracts' there are "ERC721Lockable.sol" and "LockableUpgradeable.sol".  
 Both can be extended and used as is, like
 
 ```solidity
-import "@ndujalabs/lockable/contracts/Lockable.sol";
+import "@ndujalabs/lockable/contracts/ERC721Lockable.sol";
 
-contract MyToken is Lockable {
+contract MyToken is ERC721Lockable {
   ...
 ```
 
@@ -99,9 +99,15 @@ As soon as I have a moment, I will add an example here and move the testing.
 
 1. **Everdragons2GenesisV3** https://github.com/ndujaLabs/everdragons2-core/blob/main/contracts/V2-V3/Everdragons2GenesisV3.sol#L99
 
-Feel free to make a PR to add your contracts.
+1. **MOBLAND Turf & Farm tokens** https://github.com/superpowerlabs/in-game-assets/blob/main/contracts/SuperpowerNFTBase.sol#L201
+
+Feel free to make a PR to add your implementation.
 
 ## History
+
+**0.1.0**
+
+- interface renamed from **ILockable** to **IERC721Lockable** for clarity
 
 **0.0.4**
 - remove `initialize` (which was used in the example) and use `__Lockable_init` to allow extensions
@@ -109,8 +115,8 @@ Feel free to make a PR to add your contracts.
 - add mock to allow testing
 
 **0.0.3**
-- `Lockable.getApproved` does not return address(0) if the token is locked but the caller is the locker. This allows the locker to stake the token transferring it.
-- Makes function in `Lockable` virtual to be overridden if necessary
+- `ERC721Lockable.getApproved` does not return address(0) if the token is locked but the caller is the locker. This allows the locker to stake the token transferring it.
+- Makes function in `ERC721Lockable` virtual to be overridden if necessary
 
 ## Copyright
 
