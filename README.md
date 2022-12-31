@@ -105,8 +105,10 @@ Feel free to make a PR to add your implementation.
 
 ## History
 
-**0.1.0**
+**0.1.1**
+- Adding repo to package.json
 
+**0.1.0**
 - interface renamed from **ILockable** to **IERC721Lockable** for clarity
 
 **0.0.4**
