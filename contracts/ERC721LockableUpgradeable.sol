@@ -6,7 +6,6 @@ pragma solidity ^0.8.0;
 import "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/token/ERC721/extensions/ERC721EnumerableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
-import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 
@@ -17,8 +16,7 @@ contract ERC721LockableUpgradeable is
   Initializable,
   OwnableUpgradeable,
   ERC721Upgradeable,
-  ERC721EnumerableUpgradeable,
-  UUPSUpgradeable
+  ERC721EnumerableUpgradeable
 {
   using AddressUpgradeable for address;
 
@@ -31,18 +29,18 @@ contract ERC721LockableUpgradeable is
   }
 
   /**
-     * @dev Initializes the contract by setting a `name` and a `symbol` to the token collection.
-     */
+   * @dev Initializes the contract by setting a `name` and a `symbol` to the token collection.
+   */
+  // solhint-disable-next-line
   function __ERC721Lockable_init(string memory name_, string memory symbol_) internal onlyInitializing {
     __ERC721Lockable_init_unchained(name_, symbol_);
   }
 
+  // solhint-disable-next-line
   function __ERC721Lockable_init_unchained(string memory name_, string memory symbol_) internal onlyInitializing {
     __ERC721_init(name_, symbol_);
     __Ownable_init();
   }
-
-  function _authorizeUpgrade(address newImplementation) internal virtual override onlyOwner {}
 
   function _beforeTokenTransfer(
     address from,
