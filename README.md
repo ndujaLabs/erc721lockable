@@ -105,6 +105,9 @@ Feel free to make a PR to add your implementation.
 
 ## History
 
+**0.2.0**
+- (breaking change) The upgradeable version is not extending UUPSUpgradeable anymore, leaving the developer to decide with proxy to use. This implies that whoever is using ERC721Lockable without importing UUPSUpgradeable, now has to import it explicitly.
+
 **0.1.2**
 - Use `pragma solidity ^0.8.0;` instead of specific version
 
