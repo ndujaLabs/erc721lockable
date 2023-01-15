@@ -101,7 +101,7 @@ Feel free to make a PR to add your implementation.
 ## History
 
 **0.3.0**
-- (breaking) removed the `isLocked` function in favor of `locked`, to extend the new proposal IERC5192. As a consequence the interfaceId is changed from `0xd8e4c296` to `0x2e4e0d27`
+- (breaking) removed the `isLocked` function in favor of `locked`, to extend the new proposal [IERC5192](https://github.com/attestate/ERC5192/blob/main/src/IERC5192.sol). As a consequence the interfaceId is changed from `0xd8e4c296` to `0x2e4e0d27`
 
 **0.2.0**
 - (breaking change) The upgradeable version is not extending UUPSUpgradeable anymore, leaving the developer to decide with proxy to use. This implies that whoever is using ERC721Lockable without importing UUPSUpgradeable, now has to import it explicitly.
