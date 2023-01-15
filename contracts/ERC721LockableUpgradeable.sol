@@ -6,7 +6,6 @@ pragma solidity ^0.8.0;
 import "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/token/ERC721/extensions/ERC721EnumerableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
-import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 
@@ -17,8 +16,7 @@ contract ERC721LockableUpgradeable is
   Initializable,
   OwnableUpgradeable,
   ERC721Upgradeable,
-  ERC721EnumerableUpgradeable,
-  UUPSUpgradeable
+  ERC721EnumerableUpgradeable
 {
   using AddressUpgradeable for address;
 
@@ -31,25 +29,25 @@ contract ERC721LockableUpgradeable is
   }
 
   /**
-     * @dev Initializes the contract by setting a `name` and a `symbol` to the token collection.
-     */
+   * @dev Initializes the contract by setting a `name` and a `symbol` to the token collection.
+   */
+  // solhint-disable-next-line
   function __ERC721Lockable_init(string memory name_, string memory symbol_) internal onlyInitializing {
     __ERC721Lockable_init_unchained(name_, symbol_);
   }
 
+  // solhint-disable-next-line
   function __ERC721Lockable_init_unchained(string memory name_, string memory symbol_) internal onlyInitializing {
     __ERC721_init(name_, symbol_);
     __Ownable_init();
   }
-
-  function _authorizeUpgrade(address newImplementation) internal virtual override onlyOwner {}
 
   function _beforeTokenTransfer(
     address from,
     address to,
     uint256 tokenId
   ) internal override(ERC721Upgradeable, ERC721EnumerableUpgradeable) {
-    require(!isLocked(tokenId), "Token is locked");
+    require(!locked(tokenId), "Token is locked");
     super._beforeTokenTransfer(from, to, tokenId);
   }
 
@@ -62,7 +60,7 @@ contract ERC721LockableUpgradeable is
     return interfaceId == type(IERC721Lockable).interfaceId || super.supportsInterface(interfaceId);
   }
 
-  function isLocked(uint256 tokenId) public view virtual override returns (bool) {
+  function locked(uint256 tokenId) public view virtual override returns (bool) {
     return _lockedBy[tokenId] != address(0);
   }
 
@@ -90,7 +88,7 @@ contract ERC721LockableUpgradeable is
     uint256 balance = balanceOf(owner);
     for (uint256 i = 0; i < balance; i++) {
       uint256 id = tokenOfOwnerByIndex(owner, i);
-      if (isLocked(id)) {
+      if (locked(id)) {
         return true;
       }
     }
@@ -114,7 +112,7 @@ contract ERC721LockableUpgradeable is
 
   // emergency function in case a compromised locker is removed
   function unlockIfRemovedLocker(uint256 tokenId) external virtual override onlyOwner {
-    require(isLocked(tokenId), "Not a locked tokenId");
+    require(locked(tokenId), "Not a locked tokenId");
     require(!_locker[_lockedBy[tokenId]], "Locker is still active");
     delete _lockedBy[tokenId];
     emit ForcefullyUnlocked(tokenId);
@@ -123,12 +121,12 @@ contract ERC721LockableUpgradeable is
   // manage approval
 
   function approve(address to, uint256 tokenId) public virtual override {
-    require(!isLocked(tokenId), "Locked asset");
+    require(!locked(tokenId), "Locked asset");
     super.approve(to, tokenId);
   }
 
   function getApproved(uint256 tokenId) public view virtual override returns (address) {
-    if (isLocked(tokenId) && lockerOf(tokenId) != _msgSender()) {
+    if (locked(tokenId) && lockerOf(tokenId) != _msgSender()) {
       return address(0);
     }
     return super.getApproved(tokenId);
