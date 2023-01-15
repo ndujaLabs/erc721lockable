@@ -55,6 +55,17 @@ interface IERC721Lockable is IERC5192 {
 
 ```
 
+the apparently missing events and functions are inherited from IERC721
+``` solidity
+interface IERC5192 {
+  event Locked(uint256 tokenId);
+
+  event Unlocked(uint256 tokenId);
+
+  function locked(uint256 tokenId) external view returns (bool);
+}
+```
+
 ## Install and usage
 
 To install it, launch 
