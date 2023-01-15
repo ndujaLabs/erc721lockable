@@ -7,7 +7,6 @@ If you stake an NFT to earn some yield, you transfer the ownership of the NFT to
 
 ## The interface
 
-
 ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
