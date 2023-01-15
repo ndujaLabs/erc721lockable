@@ -17,4 +17,8 @@ contract ERC721LockableUpgradeableMock is ERC721LockableUpgradeable, UUPSUpgrade
   }
 
   function _authorizeUpgrade(address newImplementation) internal virtual override onlyOwner {}
+
+  function getInterfaceId() public pure returns (bytes4) {
+    return type(IERC721Lockable).interfaceId;
+  }
 }

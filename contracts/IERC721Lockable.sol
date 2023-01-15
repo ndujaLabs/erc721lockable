@@ -4,16 +4,16 @@ pragma solidity ^0.8.0;
 // Author:
 // Francesco Sullo <francesco@sullo.co>
 
-// ERC165 interface id is 0xd8e4c296
-interface IERC721Lockable {
+import "./IERC5192.sol";
+
+// ERC165 interface id is 0x2e4e0d27
+interface IERC721Lockable is IERC5192 {
   event LockerSet(address locker);
   event LockerRemoved(address locker);
   event ForcefullyUnlocked(uint256 tokenId);
-  event Locked(uint256 tokendId);
-  event Unlocked(uint256 tokendId);
 
-  // tells if a token is locked
-  function isLocked(uint256 tokenID) external view returns (bool);
+  // tells if a token is locked. Removed to extend IERC5192
+  // function locked(uint256 tokenID) external view returns (bool);
 
   // tells the address of the contract which is locking a token
   function lockerOf(uint256 tokenID) external view returns (address);
