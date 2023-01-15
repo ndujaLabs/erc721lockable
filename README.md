@@ -15,16 +15,11 @@ pragma solidity ^0.8.4;
 // Author:
 // Francesco Sullo <francesco@sullo.co>
 
-// ERC165 interface id is 0xd8e4c296
-interface IERC721Lockable {
+// ERC165 interface id is 0x2e4e0d27
+interface IERC721Lockable is IERC5192 {
   event LockerSet(address locker);
   event LockerRemoved(address locker);
   event ForcefullyUnlocked(uint256 tokenId);
-  event Locked(uint256 tokendId);
-  event Unlocked(uint256 tokendId);
-
-  // tells if a token is locked
-  function isLocked(uint256 tokenID) external view returns (bool);
 
   // tells the address of the contract which is locking a token
   function lockerOf(uint256 tokenID) external view returns (address);
@@ -104,6 +99,9 @@ As soon as I have a moment, I will add an example here and move the testing.
 Feel free to make a PR to add your implementation.
 
 ## History
+
+**0.3.0**
+- (breaking) removed the `isLocked` function in favor of `locked`, to extend the new proposal [IERC5192](https://github.com/attestate/ERC5192/blob/main/src/IERC5192.sol). As a consequence the interfaceId is changed from `0xd8e4c296` to `0x2e4e0d27`
 
 **0.2.0**
 - (breaking change) The upgradeable version is not extending UUPSUpgradeable anymore, leaving the developer to decide with proxy to use. This implies that whoever is using ERC721Lockable without importing UUPSUpgradeable, now has to import it explicitly.
