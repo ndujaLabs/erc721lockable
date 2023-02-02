@@ -90,7 +90,7 @@ contract ERC721Lockable is IERC721Lockable, Ownable, ERC721, ERC721Enumerable {
   function unlockIfRemovedLocker(uint256 tokenId) external virtual override {
     require(locked(tokenId), "Not a locked tokenId");
     require(!_locker[_lockedBy[tokenId]], "Locker is still active");
-    require(ownerOf(tokenId) == _msgSender() || owner() == _msgSender(), "Forbidden");
+    require(ownerOf(tokenId) == _msgSender(), "Not the asset owner");
     delete _lockedBy[tokenId];
     emit ForcefullyUnlocked(tokenId);
   }
