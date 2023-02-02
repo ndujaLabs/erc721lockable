@@ -111,9 +111,10 @@ contract ERC721LockableUpgradeable is
   }
 
   // emergency function in case a compromised locker is removed
-  function unlockIfRemovedLocker(uint256 tokenId) external virtual override onlyOwner {
+  function unlockIfRemovedLocker(uint256 tokenId) external virtual override {
     require(locked(tokenId), "Not a locked tokenId");
     require(!_locker[_lockedBy[tokenId]], "Locker is still active");
+    require(ownerOf(tokenId) == _msgSender(), "Not the asset owner");
     delete _lockedBy[tokenId];
     emit ForcefullyUnlocked(tokenId);
   }
