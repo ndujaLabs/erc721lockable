@@ -57,7 +57,10 @@ contract ERC721LockableUpgradeable is
     override(ERC721Upgradeable, ERC721EnumerableUpgradeable)
     returns (bool)
   {
-    return interfaceId == type(IERC721Lockable).interfaceId || super.supportsInterface(interfaceId);
+    return
+      interfaceId == type(IERC5192).interfaceId ||
+      interfaceId == type(IERC721Lockable).interfaceId ||
+      super.supportsInterface(interfaceId);
   }
 
   function locked(uint256 tokenId) public view virtual override returns (bool) {

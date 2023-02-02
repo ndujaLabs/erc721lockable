@@ -55,7 +55,7 @@ interface IERC721Lockable is IERC5192 {
 
 ```
 
-the apparently missing events and functions are inherited from IERC721
+the apparently missing events and functions are inherited from IERC5192
 ``` solidity
 interface IERC5192 {
   event Locked(uint256 tokenId);
