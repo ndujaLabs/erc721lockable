@@ -33,7 +33,10 @@ contract ERC721Lockable is IERC721Lockable, Ownable, ERC721, ERC721Enumerable {
   }
 
   function supportsInterface(bytes4 interfaceId) public view override(ERC721, ERC721Enumerable) returns (bool) {
-    return interfaceId == type(IERC721Lockable).interfaceId || super.supportsInterface(interfaceId);
+    return
+      interfaceId == type(IERC5192).interfaceId ||
+      interfaceId == type(IERC721Lockable).interfaceId ||
+      super.supportsInterface(interfaceId);
   }
 
   function locked(uint256 tokenId) public view virtual override returns (bool) {
