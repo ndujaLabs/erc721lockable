@@ -110,6 +110,9 @@ Feel free to make a PR to add your implementation.
 
 ## History
 
+**0.4.0**
+- align `locked` to [IERC5192](https://eips.ethereum.org/EIPS/eip-5192) that specifies that it should revert if owner is address(0), i.e., if the token does not exist
+
 **0.3.0**
 - (breaking) removed the `isLocked` function in favor of `locked`, to extend the new proposal [IERC5192](https://github.com/attestate/ERC5192/blob/main/src/IERC5192.sol). As a consequence the interfaceId is changed from `0xd8e4c296` to `0x2e4e0d27`
 

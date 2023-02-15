@@ -9,6 +9,8 @@ import "../ERC721LockableUpgradeable.sol";
 //import "hardhat/console.sol";
 
 contract ERC721LockableUpgradeableMock is ERC721LockableUpgradeable, UUPSUpgradeable {
+
+  uint public latestTokenId;
   /// @custom:oz-upgrades-unsafe-allow constructor
   constructor() initializer {}
 
@@ -20,5 +22,12 @@ contract ERC721LockableUpgradeableMock is ERC721LockableUpgradeable, UUPSUpgrade
 
   function getInterfaceId() public pure returns (bytes4) {
     return type(IERC721Lockable).interfaceId;
+  }
+
+  function mint (address to, uint256 amount) public {
+    for (uint256 i = 0; i < amount; i++) {
+      // inefficient, but this is a mock :-)
+      _safeMint(to, ++latestTokenId);
+    }
   }
 }

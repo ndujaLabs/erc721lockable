@@ -28,7 +28,13 @@ contract ERC721Lockable is IERC721Lockable, Ownable, ERC721, ERC721Enumerable {
     address to,
     uint256 tokenId
   ) internal override(ERC721, ERC721Enumerable) {
-    require(!locked(tokenId), "Token is locked");
+    require(
+      // during minting
+      from == address(0) ||
+        // later
+        !locked(tokenId),
+      "Token is locked"
+    );
     super._beforeTokenTransfer(from, to, tokenId);
   }
 
@@ -40,6 +46,7 @@ contract ERC721Lockable is IERC721Lockable, Ownable, ERC721, ERC721Enumerable {
   }
 
   function locked(uint256 tokenId) public view virtual override returns (bool) {
+    require(_exists(tokenId), "Token does not exist");
     return _lockedBy[tokenId] != address(0);
   }
 
