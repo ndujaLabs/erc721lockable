@@ -47,7 +47,13 @@ contract ERC721LockableUpgradeable is
     address to,
     uint256 tokenId
   ) internal override(ERC721Upgradeable, ERC721EnumerableUpgradeable) {
-    require(!locked(tokenId), "Token is locked");
+    require(
+      // during minting
+      from == address(0) ||
+        // later
+        !locked(tokenId),
+      "Token is locked"
+    );
     super._beforeTokenTransfer(from, to, tokenId);
   }
 
@@ -64,6 +70,7 @@ contract ERC721LockableUpgradeable is
   }
 
   function locked(uint256 tokenId) public view virtual override returns (bool) {
+    require(_exists(tokenId), "Token does not exist");
     return _lockedBy[tokenId] != address(0);
   }
 
@@ -122,7 +129,7 @@ contract ERC721LockableUpgradeable is
     emit ForcefullyUnlocked(tokenId);
   }
 
-  // manage approval
+  // overrides approval
 
   function approve(address to, uint256 tokenId) public virtual override {
     require(!locked(tokenId), "Locked asset");
