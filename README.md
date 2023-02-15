@@ -110,7 +110,7 @@ Feel free to make a PR to add your implementation.
 
 ## History
 
-**0.4.0**
+**0.4.0** / breaking
 - align `locked` to [IERC5192](https://eips.ethereum.org/EIPS/eip-5192) that specifies that it should revert if owner is address(0), i.e., if the token does not exist
 
 **0.3.0**
