@@ -1,6 +1,6 @@
 {
   "name": "@ndujalabs/erc721lockable",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "A simple approach to lock NFT in place w/out losing ownership",
   "publishConfig": {
     "access": "public"
@@ -12,7 +12,8 @@
     "test": "npx hardhat test",
     "compile": "npx hardhat compile",
     "lint": "prettier --write 'contracts/**/*.sol' && solhint 'contracts/**/*.sol'",
-    "format": "npx prettier --write ./test/fixtures/**/*.js ./**/*.js"
+    "format": "npx prettier --write ./test/fixtures/**/*.js ./**/*.js",
+    "coverage": "NODE_ENV=test npx hardhat coverage"
   },
   "repository": {
     "type": "git",
@@ -31,8 +32,6 @@
     "@nomiclabs/hardhat-ethers": "^2.0.3",
     "@nomiclabs/hardhat-etherscan": "^2.1.8",
     "@nomiclabs/hardhat-waffle": "^2.0.1",
-    "@openzeppelin/contracts": "^4.5.0",
-    "@openzeppelin/contracts-upgradeable": "^4.7.1",
     "@openzeppelin/hardhat-upgrades": "^1.19.0",
     "chai": "^4.3.4",
     "ethereum-waffle": "^3.4.0",
@@ -52,5 +51,10 @@
   },
   "lint-staged": {
     "*.js": "prettier --write"
+  },
+  "dependencies": {
+    "@cruna/cruna-protocol": "^1.0.3",
+    "@openzeppelin/contracts": "^4.8.3",
+    "@openzeppelin/contracts-upgradeable": "^4.8.3"
   }
 }

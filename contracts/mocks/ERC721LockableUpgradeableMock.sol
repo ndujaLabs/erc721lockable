@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.11;
+pragma solidity ^0.8.19;
 
 // Authors: Francesco Sullo <francesco@sullo.co>
 
@@ -15,7 +15,7 @@ contract ERC721LockableUpgradeableMock is ERC721LockableUpgradeable, UUPSUpgrade
   constructor() initializer {}
 
   function initialize(string memory name, string memory symbol) public initializer {
-    __ERC721Lockable_init(name, symbol);
+    __ERC721Lockable_init(name, symbol, false);
   }
 
   function _authorizeUpgrade(address newImplementation) internal virtual override onlyOwner {}
