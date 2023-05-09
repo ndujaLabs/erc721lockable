@@ -1,11 +1,12 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@cruna/cruna-protocol': ^1.0.3
   '@nomiclabs/hardhat-ethers': ^2.0.3
   '@nomiclabs/hardhat-etherscan': ^2.1.8
   '@nomiclabs/hardhat-waffle': ^2.0.1
-  '@openzeppelin/contracts': ^4.5.0
-  '@openzeppelin/contracts-upgradeable': ^4.7.1
+  '@openzeppelin/contracts': ^4.8.3
+  '@openzeppelin/contracts-upgradeable': ^4.8.3
   '@openzeppelin/hardhat-upgrades': ^1.19.0
   chai: ^4.3.4
   ethereum-waffle: ^3.4.0
@@ -23,12 +24,15 @@ specifiers:
   soliutils: ^0.0.4
   typescript: ^4.7.3
 
+dependencies:
+  '@cruna/cruna-protocol': 1.0.3
+  '@openzeppelin/contracts': 4.8.3
+  '@openzeppelin/contracts-upgradeable': 4.8.3
+
 devDependencies:
   '@nomiclabs/hardhat-ethers': 2.0.4_ethers@5.5.4+hardhat@2.8.3
   '@nomiclabs/hardhat-etherscan': 2.1.8_hardhat@2.8.3
   '@nomiclabs/hardhat-waffle': 2.0.2_6oy2mnnnyf6xpql55mxsdlbst4
-  '@openzeppelin/contracts': 4.5.0
-  '@openzeppelin/contracts-upgradeable': 4.7.1
   '@openzeppelin/hardhat-upgrades': 1.19.0_rtlkobk42hidxyza6zqjmockt4
   chai: 4.3.6
   ethereum-waffle: 3.4.0_typescript@4.7.3
@@ -69,6 +73,10 @@ packages:
       js-tokens: 4.0.0
     dev: true
 
+  /@cruna/cruna-protocol/1.0.3:
+    resolution: {integrity: sha512-FRl6KH5Gy/swyGtL3etYKXdfiBuGVQpqBCcnpO4H1nCWy9nB739eCyGO9fP8esSKTencYX20cepH+gZSkUZQrA==}
+    dev: false
+
   /@ensdomains/ens/0.4.5:
     resolution: {integrity: sha512-JSvpj1iNMFjK6K+uVl4unqMoa9rf5jopb8cya5UGBWz23Nw8hSNT7efgUx4BTlAPAgpNlEioUfeTyQ6J9ZvTVw==}
     deprecated: Please use @ensdomains/ens-contracts
@@ -103,7 +111,7 @@ packages:
     dependencies:
       '@resolver-engine/imports': 0.3.3
       '@resolver-engine/imports-fs': 0.3.3
-      '@typechain/ethers-v5': 2.0.0_typechain@3.0.0
+      '@typechain/ethers-v5': 2.0.0_reth2rithpeda6nuq3n7irbdfu
       '@types/mkdirp': 0.5.2
       '@types/node-fetch': 2.5.12
       ethers: 5.5.4
@@ -640,13 +648,11 @@ packages:
       hardhat: 2.8.3
     dev: true
 
-  /@openzeppelin/contracts-upgradeable/4.7.1:
-    resolution: {integrity: sha512-5EFiZld3DYFd8aTL8eeMnhnaWh1/oXLXFNuFMrgF3b1DNPshF3LCyO7VR6lc+gac2URJ0BlVcZoCfkk/3MoEfg==}
-    dev: true
+  /@openzeppelin/contracts-upgradeable/4.8.3:
+    resolution: {integrity: sha512-SXDRl7HKpl2WDoJpn7CK/M9U4Z8gNXDHHChAKh0Iz+Wew3wu6CmFYBeie3je8V0GSXZAIYYwUktSrnW/kwVPtg==}
 
-  /@openzeppelin/contracts/4.5.0:
-    resolution: {integrity: sha512-fdkzKPYMjrRiPK6K4y64e6GzULR7R7RwxSigHS8DDp7aWDeoReqsQI+cxHV1UuhAqX69L1lAaWDxenfP+xiqzA==}
-    dev: true
+  /@openzeppelin/contracts/4.8.3:
+    resolution: {integrity: sha512-bQHV8R9Me8IaJoJ2vPG4rXcL7seB7YVuskr4f+f5RyOStSZetwzkWtoqDMl5erkBJy0lDRUnIR2WIkPiC0GJlg==}
 
   /@openzeppelin/hardhat-upgrades/1.19.0_rtlkobk42hidxyza6zqjmockt4:
     resolution: {integrity: sha512-351QqDO3nZ96g0BO/bQnaTflix4Nw4ELWC/hZ8PwicsuVxRmxN/GZhxPrs62AOdiQdZ+xweawrVXa5knliRd4A==}
@@ -861,16 +867,14 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@typechain/ethers-v5/2.0.0_typechain@3.0.0:
+  /@typechain/ethers-v5/2.0.0_reth2rithpeda6nuq3n7irbdfu:
     resolution: {integrity: sha512-0xdCkyGOzdqh4h5JSf+zoWx85IusEjDcPIwNEHP8mrWSnCae4rvrqB+/gtpdNfX7zjlFlZiMeePn2r63EI3Lrw==}
     peerDependencies:
+      ethers: ^5.0.0
       typechain: ^3.0.0
     dependencies:
       ethers: 5.5.4
       typechain: 3.0.0_typescript@4.7.3
-    transitivePeerDependencies:
-      - bufferutil
-      - utf-8-validate
     dev: true
 
   /@types/abstract-leveldown/7.2.0:
@@ -7827,8 +7831,8 @@ packages:
   /soliutils/0.0.4:
     resolution: {integrity: sha512-qvNrYns30YMdhiOFrA6aY/1FPOxqbnkXuaIajTBIOfprYntg8IfLPj0R3WQyjyeM8dXt+TLQnvYXp3J+ac0jFA==}
     dependencies:
-      '@openzeppelin/contracts': 4.5.0
-      '@openzeppelin/contracts-upgradeable': 4.7.1
+      '@openzeppelin/contracts': 4.8.3
+      '@openzeppelin/contracts-upgradeable': 4.8.3
     dev: true
 
   /source-map-resolve/0.5.3:

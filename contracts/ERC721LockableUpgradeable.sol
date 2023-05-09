@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.19;
 
 // Authors: Francesco Sullo <francesco@sullo.co>
 
@@ -23,6 +23,8 @@ contract ERC721LockableUpgradeable is
   mapping(address => bool) private _locker;
   mapping(uint256 => address) private _lockedBy;
 
+  bool internal _defaultLocked;
+
   modifier onlyLocker() {
     require(_locker[_msgSender()], "Forbidden");
     _;
@@ -32,20 +34,26 @@ contract ERC721LockableUpgradeable is
    * @dev Initializes the contract by setting a `name` and a `symbol` to the token collection.
    */
   // solhint-disable-next-line
-  function __ERC721Lockable_init(string memory name_, string memory symbol_) internal onlyInitializing {
-    __ERC721Lockable_init_unchained(name_, symbol_);
-  }
-
-  // solhint-disable-next-line
-  function __ERC721Lockable_init_unchained(string memory name_, string memory symbol_) internal onlyInitializing {
+  function __ERC721Lockable_init(string memory name_, string memory symbol_, bool defaultLocked_) internal onlyInitializing {
     __ERC721_init(name_, symbol_);
     __Ownable_init();
+    updateDefaultLocked(defaultLocked_);
+  }
+
+  function defaultLocked() external view override returns (bool) {
+    return _defaultLocked;
+  }
+
+  function updateDefaultLocked(bool defaultLocked_) public onlyOwner {
+    _defaultLocked = defaultLocked_;
+    emit DefaultLocked(defaultLocked_);
   }
 
   function _beforeTokenTransfer(
     address from,
     address to,
-    uint256 tokenId
+    uint256 tokenId,
+    uint256 batchSize
   ) internal override(ERC721Upgradeable, ERC721EnumerableUpgradeable) {
     require(
       // during minting
@@ -54,7 +62,7 @@ contract ERC721LockableUpgradeable is
         !locked(tokenId),
       "Token is locked"
     );
-    super._beforeTokenTransfer(from, to, tokenId);
+    super._beforeTokenTransfer(from, to, tokenId, batchSize);
   }
 
   function supportsInterface(bytes4 interfaceId)
@@ -64,7 +72,7 @@ contract ERC721LockableUpgradeable is
     returns (bool)
   {
     return
-      interfaceId == type(IERC5192).interfaceId ||
+      interfaceId == type(IERC6982).interfaceId ||
       interfaceId == type(IERC721Lockable).interfaceId ||
       super.supportsInterface(interfaceId);
   }
@@ -110,14 +118,14 @@ contract ERC721LockableUpgradeable is
     require(isLocker(_msgSender()), "Not an authorized locker");
     require(getApproved(tokenId) == _msgSender() || isApprovedForAll(ownerOf(tokenId), _msgSender()), "Locker not approved");
     _lockedBy[tokenId] = _msgSender();
-    emit Locked(tokenId);
+    emit Locked(tokenId, true);
   }
 
   function unlock(uint256 tokenId) external virtual override onlyLocker {
     // will revert if token does not exist
     require(_lockedBy[tokenId] == _msgSender(), "Wrong locker");
     delete _lockedBy[tokenId];
-    emit Unlocked(tokenId);
+    emit Locked(tokenId, false);
   }
 
   // emergency function in case a compromised locker is removed
@@ -131,24 +139,24 @@ contract ERC721LockableUpgradeable is
 
   // overrides approval
 
-  function approve(address to, uint256 tokenId) public virtual override {
+  function approve(address to, uint256 tokenId) public virtual override(IERC721Upgradeable, ERC721Upgradeable) {
     require(!locked(tokenId), "Locked asset");
     super.approve(to, tokenId);
   }
 
-  function getApproved(uint256 tokenId) public view virtual override returns (address) {
+  function getApproved(uint256 tokenId) public view virtual override (IERC721Upgradeable, ERC721Upgradeable) returns (address) {
     if (locked(tokenId) && lockerOf(tokenId) != _msgSender()) {
       return address(0);
     }
     return super.getApproved(tokenId);
   }
 
-  function setApprovalForAll(address operator, bool approved) public virtual override {
+  function setApprovalForAll(address operator, bool approved) public virtual override (IERC721Upgradeable, ERC721Upgradeable) {
     require(!approved || !hasLocks(_msgSender()), "At least one asset is locked");
     super.setApprovalForAll(operator, approved);
   }
 
-  function isApprovedForAll(address owner, address operator) public view virtual override returns (bool) {
+  function isApprovedForAll(address owner, address operator) public view virtual override(IERC721Upgradeable, ERC721Upgradeable) returns (bool) {
     if (hasLocks(owner)) {
       return false;
     }

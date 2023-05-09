@@ -55,15 +55,29 @@ interface IERC721Lockable is IERC5192 {
 
 ```
 
-the apparently missing events and functions are inherited from IERC5192
-``` solidity
-interface IERC5192 {
-  event Locked(uint256 tokenId);
+the apparently missing events and functions are inherited from 
+```solidity
+// SPDX-License-Identifier: CC0-1.0
+pragma solidity ^0.8.19;
 
-  event Unlocked(uint256 tokenId);
+// ERC165 interfaceId 0x6b61a747
+interface IERC6982 {
+  // MUST be emitted one time, when the contract is deployed,
+  // defining the default status of any token that will be minted.
+  event DefaultLocked(bool locked);
 
+  // MUST be emitted any time the status changes.
+  event Locked(uint256 indexed tokenId, bool locked);
+
+  // Returns the default status of the tokens.
+  function defaultLocked() external view returns (bool);
+
+  // Returns the status of the token.
+  // If no special event occurred, it MUST return what defaultLocked() returns.
+  // It MUST revert if the token does not exist.
   function locked(uint256 tokenId) external view returns (bool);
 }
+
 ```
 
 ## Install and usage
@@ -109,6 +123,10 @@ As soon as I have a moment, I will add an example here and move the testing.
 Feel free to make a PR to add your implementation.
 
 ## History
+
+**0.5.0**
+- moving from `IERC5192` to more efficient `IERC6982`
+- this is a breaking change because constructor and initializing function must emit DefaultLocked and need a new parameter for it. However the contract is much more efficient.
 
 **0.4.0** / breaking
 - align `locked` to [IERC5192](https://eips.ethereum.org/EIPS/eip-5192) that specifies that it should revert if owner is address(0), i.e., if the token does not exist
