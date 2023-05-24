@@ -17,7 +17,6 @@
     "coverage": "rimraf coverage coverage.json && NODE_ENV=test npx hardhat coverage",
     "prepublishOnly": "./check-hardhat-console.js && npm run compile && npm test",
     "publish-package": "scripts/publish.sh"
-
   },
   "repository": {
     "type": "git",
@@ -48,6 +47,7 @@
     "prettier-plugin-solidity": "^1.1.3",
     "pretty-quick": "^3.1.3",
     "require-or-mock": "^0.2.1",
+    "rimraf": "^5.0.1",
     "solhint": "^3.4.1",
     "solidity-coverage": "^0.7.22",
     "soliutils": "^0.0.4",
