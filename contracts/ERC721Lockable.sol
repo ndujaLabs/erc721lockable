@@ -122,29 +122,4 @@ contract ERC721Lockable is IERC721Lockable, Ownable, ERC721, ERC721Enumerable {
     emit ForcefullyUnlocked(tokenId);
   }
 
-  // manage approval
-
-  function approve(address to, uint256 tokenId) public virtual override(IERC721, ERC721) {
-    require(!locked(tokenId), "Locked asset");
-    super.approve(to, tokenId);
-  }
-
-  function getApproved(uint256 tokenId) public view virtual override(IERC721, ERC721) returns (address) {
-    if (locked(tokenId) && lockerOf(tokenId) != _msgSender()) {
-      return address(0);
-    }
-    return super.getApproved(tokenId);
-  }
-
-  function setApprovalForAll(address operator, bool approved) public virtual override(IERC721, ERC721) {
-    require(!approved || !hasLocks(_msgSender()), "At least one asset is locked");
-    super.setApprovalForAll(operator, approved);
-  }
-
-  function isApprovedForAll(address owner, address operator) public view virtual override(IERC721, ERC721) returns (bool) {
-    if (hasLocks(owner)) {
-      return false;
-    }
-    return super.isApprovedForAll(owner, operator);
-  }
 }

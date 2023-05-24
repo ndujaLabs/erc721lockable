@@ -10,7 +10,4 @@ contract MyBadge is ERC721Locked {
     _safeMint(to, tokenId);
   }
 
-  function getInterfacesIds() public pure returns (bytes4, bytes4) {
-    return (type(IERC721DefaultApprovable).interfaceId, type(IERC6982).interfaceId);
-  }
 }

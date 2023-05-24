@@ -124,6 +124,9 @@ Feel free to make a PR to add your implementation.
 
 ## History
 
+**0.6.1**
+- remove dependency from ERC721DefaultApprovable since it was not really necessary
+
 **0.6.0**
 - Adding DefaultLocked contract for Soulbound and Badges, using IERC6982
 
