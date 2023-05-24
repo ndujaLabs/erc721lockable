@@ -89,10 +89,12 @@ npm i -d attributable
 
 You may need to install the peer dependencies too, i.e., the OpenZeppelin contracts.
 
-To use the interface, in your smart contract import it as
+To use the interface, in your smart contract import what you need as
 
 ```solidity
-import "@ndujalabs/lockable/contracts/IERC721Lockable.sol";
+import "@ndujalabs/lockable/IERC6982.sol";
+import "@ndujalabs/lockable/IERC721Lockable.sol";
+import "@ndujalabs/lockable/IERC721Lockable.sol";
 ```
 
 and implement the required functions.
@@ -101,7 +103,7 @@ In '/contracts' there are "ERC721Lockable.sol" and "LockableUpgradeable.sol".
 Both can be extended and used as is, like
 
 ```solidity
-import "@ndujalabs/lockable/contracts/ERC721Lockable.sol";
+import "@ndujalabs/lockable/ERC721Lockable.sol";
 
 contract MyToken is ERC721Lockable {
   ...

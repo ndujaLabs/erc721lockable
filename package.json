@@ -13,7 +13,11 @@
     "compile": "npx hardhat compile",
     "lint": "prettier --write 'contracts/**/*.sol' && solhint 'contracts/**/*.sol'",
     "format": "npx prettier --write ./test/fixtures/**/*.js ./**/*.js",
-    "coverage": "NODE_ENV=test npx hardhat coverage"
+    "clean": "rimraf artifacts cache coverage coverage.json",
+    "coverage": "rimraf coverage coverage.json && NODE_ENV=test npx hardhat coverage",
+    "prepublishOnly": "./check-hardhat-console.js && npm run compile && npm test",
+    "publish-package": "scripts/publish.sh"
+
   },
   "repository": {
     "type": "git",

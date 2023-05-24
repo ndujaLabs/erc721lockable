@@ -1,0 +1,38 @@
+{
+  "name": "@ndujalabs/erc721lockable",
+  "version": "0.6.1",
+  "description": "A simple approach to lock NFT in place w/out losing ownership",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "**/*.sol",
+    "!/mocks/**/*",
+    "README.md"
+  ],
+  "scripts": {
+    "clean": "rimraf artifacts cache coverage coverage.json",
+    "prepublishOnly": "../scripts/verify-package-json-in-sync.js && ../scripts/check-hardhat-console.js && pnpm run clean && NODE_ENV=test npx hardhat test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ndujalabs/erc721lockable.git"
+  },
+  "author": {
+    "name": "Francesco Sullo",
+    "email": "francesco@sullo.co"
+  },
+  "bugs": {
+    "url": "https://github.com/ndujalabs/erc721lockable/issues"
+  },
+  "homepage": "https://github.com/ndujalabs/erc721lockable#readme",
+  "license": "GPL3",
+  "keywords": [
+    "solidity",
+    "ethereum",
+    "smart",
+    "contracts",
+    "security",
+    "nft"
+  ]
+}
