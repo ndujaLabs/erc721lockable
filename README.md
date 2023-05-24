@@ -124,6 +124,9 @@ Feel free to make a PR to add your implementation.
 
 ## History
 
+**0.6.0**
+- Adding DefaultLocked contract for Soulbound and Badges, using IERC6982
+
 **0.5.0**
 - moving from `IERC5192` to more efficient `IERC6982`
 - this is a breaking change because constructor and initializing function must emit DefaultLocked and need a new parameter for it. However the contract is much more efficient.

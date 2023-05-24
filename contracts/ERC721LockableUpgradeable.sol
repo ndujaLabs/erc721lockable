@@ -90,7 +90,7 @@ contract ERC721LockableUpgradeable is
     return _locker[locker];
   }
 
-  function setLocker(address locker) external virtual override onlyOwner {
+  function setLocker(address locker) external virtual override onlyOwner payable {
     require(locker.isContract(), "Locker not a contract");
     _locker[locker] = true;
     emit LockerSet(locker);
