@@ -20,6 +20,8 @@ contract ERC721LockableUpgradeableMock is ERC721LockableUpgradeable, UUPSUpgrade
 
   function _authorizeUpgrade(address newImplementation) internal virtual override onlyOwner {}
 
+  function _canSetDefaultLocked() internal view override onlyOwner {}
+
   function getInterfaceId() public pure returns (bytes4) {
     return type(IERC721Lockable).interfaceId;
   }
@@ -30,4 +32,9 @@ contract ERC721LockableUpgradeableMock is ERC721LockableUpgradeable, UUPSUpgrade
       _safeMint(to, ++latestTokenId);
     }
   }
+
+  function getIERC6982Id() public pure returns (bytes4) {
+    return type(IERC6982).interfaceId;
+  }
+
 }

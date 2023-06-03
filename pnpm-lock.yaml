@@ -1,7 +1,6 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@cruna/cruna-protocol': ^1.0.3
   '@nomiclabs/hardhat-ethers': ^2.2.3
   '@nomiclabs/hardhat-etherscan': ^2.1.8
   '@nomiclabs/hardhat-waffle': ^2.0.5
@@ -26,7 +25,6 @@ specifiers:
   typescript: ^4.9.5
 
 dependencies:
-  '@cruna/cruna-protocol': 1.0.3
   '@openzeppelin/contracts': 4.8.3
   '@openzeppelin/contracts-upgradeable': 4.8.3
 
@@ -141,10 +139,6 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
-
-  /@cruna/cruna-protocol/1.0.3:
-    resolution: {integrity: sha512-FRl6KH5Gy/swyGtL3etYKXdfiBuGVQpqBCcnpO4H1nCWy9nB739eCyGO9fP8esSKTencYX20cepH+gZSkUZQrA==}
-    dev: false
 
   /@ensdomains/ens/0.4.5:
     resolution: {integrity: sha512-JSvpj1iNMFjK6K+uVl4unqMoa9rf5jopb8cya5UGBWz23Nw8hSNT7efgUx4BTlAPAgpNlEioUfeTyQ6J9ZvTVw==}

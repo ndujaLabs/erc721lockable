@@ -13,4 +13,5 @@ contract MyLocker {
   function unlock(address asset, uint256 id) public {
     IERC721Lockable(asset).unlock(id);
   }
+
 }

@@ -1,6 +1,6 @@
 {
   "name": "@ndujalabs/erc721lockable",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "A simple approach to lock NFT in place w/out losing ownership",
   "publishConfig": {
     "access": "public"
@@ -57,7 +57,6 @@
     "*.js": "prettier --write"
   },
   "dependencies": {
-    "@cruna/cruna-protocol": "^1.0.3",
     "@openzeppelin/contracts": "^4.8.3",
     "@openzeppelin/contracts-upgradeable": "^4.8.3"
   }

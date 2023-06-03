@@ -11,7 +11,7 @@ import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 
 import "./IERC721Lockable.sol";
 
-contract ERC721LockableUpgradeable is
+abstract contract ERC721LockableUpgradeable is
   IERC721Lockable,
   Initializable,
   OwnableUpgradeable,
@@ -44,7 +44,11 @@ contract ERC721LockableUpgradeable is
     return _defaultLocked;
   }
 
+  // must be implemented to be launched by the contract's owner
+  function _canSetDefaultLocked() internal view virtual;
+
   function updateDefaultLocked(bool defaultLocked_) public onlyOwner {
+    _canSetDefaultLocked();
     _defaultLocked = defaultLocked_;
     emit DefaultLocked(defaultLocked_);
   }
