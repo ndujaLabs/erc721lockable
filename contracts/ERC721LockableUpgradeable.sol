@@ -142,31 +142,5 @@ abstract contract ERC721LockableUpgradeable is
     emit ForcefullyUnlocked(tokenId);
   }
 
-  // overrides approval
-
-  function approve(address to, uint256 tokenId) public virtual override(IERC721Upgradeable, ERC721Upgradeable) {
-    require(!locked(tokenId), "Locked asset");
-    super.approve(to, tokenId);
-  }
-
-  function getApproved(uint256 tokenId) public view virtual override (IERC721Upgradeable, ERC721Upgradeable) returns (address) {
-    if (locked(tokenId) && lockerOf(tokenId) != _msgSender()) {
-      return address(0);
-    }
-    return super.getApproved(tokenId);
-  }
-
-  function setApprovalForAll(address operator, bool approved) public virtual override (IERC721Upgradeable, ERC721Upgradeable) {
-    require(!approved || !hasLocks(_msgSender()), "At least one asset is locked");
-    super.setApprovalForAll(operator, approved);
-  }
-
-  function isApprovedForAll(address owner, address operator) public view virtual override(IERC721Upgradeable, ERC721Upgradeable) returns (bool) {
-    if (hasLocks(owner)) {
-      return false;
-    }
-    return super.isApprovedForAll(owner, operator);
-  }
-
   uint256[50] private __gap;
 }

@@ -9,7 +9,7 @@ import "@openzeppelin/contracts/utils/Address.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "./IERC721Lockable.sol";
 
-contract ERC721Lockable is IERC721Lockable, Ownable, ERC721, ERC721Enumerable {
+abstract contract ERC721Lockable is IERC721Lockable, Ownable, ERC721, ERC721Enumerable {
   using Address for address;
 
   mapping(address => bool) private _locker;
@@ -34,7 +34,11 @@ contract ERC721Lockable is IERC721Lockable, Ownable, ERC721, ERC721Enumerable {
     return _defaultLocked;
   }
 
+  // must be implemented to be launched by the contract's owner
+  function _canSetDefaultLocked() internal view virtual;
+
   function updateDefaultLocked(bool defaultLocked_) public virtual onlyOwner {
+    _canSetDefaultLocked();
     _defaultLocked = defaultLocked_;
     emit DefaultLocked(defaultLocked_);
   }

@@ -134,6 +134,9 @@ Feel free to make a PR to add your implementation.
 
 ## History
 
+**0.7.0**
+- Removes unnecessary checks on approvals
+
 **0.6.3**
 - Fix missing virtual statements :-(
 
