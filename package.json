@@ -1,6 +1,6 @@
 {
   "name": "@ndujalabs/erc721lockable",
-  "version": "0.6.3",
+  "version": "0.7.0",
   "description": "A simple approach to lock NFT in place w/out losing ownership",
   "publishConfig": {
     "access": "public"
