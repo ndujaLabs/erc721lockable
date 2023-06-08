@@ -34,7 +34,7 @@ abstract contract ERC721LockableUpgradeable is
    * @dev Initializes the contract by setting a `name` and a `symbol` to the token collection.
    */
   // solhint-disable-next-line
-  function __ERC721Lockable_init(string memory name_, string memory symbol_, bool defaultLocked_) internal onlyInitializing {
+  function __ERC721Lockable_init(string memory name_, string memory symbol_, bool defaultLocked_) internal virtual onlyInitializing {
     __ERC721_init(name_, symbol_);
     __Ownable_init();
     updateDefaultLocked(defaultLocked_);
@@ -47,7 +47,7 @@ abstract contract ERC721LockableUpgradeable is
   // must be implemented to be launched by the contract's owner
   function _canSetDefaultLocked() internal view virtual;
 
-  function updateDefaultLocked(bool defaultLocked_) public onlyOwner {
+  function updateDefaultLocked(bool defaultLocked_) public virtual onlyOwner {
     _canSetDefaultLocked();
     _defaultLocked = defaultLocked_;
     emit DefaultLocked(defaultLocked_);
@@ -58,7 +58,7 @@ abstract contract ERC721LockableUpgradeable is
     address to,
     uint256 tokenId,
     uint256 batchSize
-  ) internal override(ERC721Upgradeable, ERC721EnumerableUpgradeable) {
+  ) internal virtual override(ERC721Upgradeable, ERC721EnumerableUpgradeable) {
     require(
       // during minting
       from == address(0) ||
@@ -73,6 +73,7 @@ abstract contract ERC721LockableUpgradeable is
     public
     view
     override(ERC721Upgradeable, ERC721EnumerableUpgradeable)
+    virtual
     returns (bool)
   {
     return

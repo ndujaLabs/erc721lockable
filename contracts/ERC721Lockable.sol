@@ -30,11 +30,11 @@ contract ERC721Lockable is IERC721Lockable, Ownable, ERC721, ERC721Enumerable {
     updateDefaultLocked(defaultLocked_);
   }
 
-  function defaultLocked() external view override returns (bool) {
+  function defaultLocked() external view virtual override returns (bool) {
     return _defaultLocked;
   }
 
-  function updateDefaultLocked(bool defaultLocked_) public onlyOwner {
+  function updateDefaultLocked(bool defaultLocked_) public virtual onlyOwner {
     _defaultLocked = defaultLocked_;
     emit DefaultLocked(defaultLocked_);
   }
@@ -44,7 +44,7 @@ contract ERC721Lockable is IERC721Lockable, Ownable, ERC721, ERC721Enumerable {
     address to,
     uint256 tokenId,
     uint256 batchSize
-  ) internal override(ERC721, ERC721Enumerable) {
+  ) internal virtual override(ERC721, ERC721Enumerable) {
     require(
       // during minting
       from == address(0) ||
@@ -55,7 +55,7 @@ contract ERC721Lockable is IERC721Lockable, Ownable, ERC721, ERC721Enumerable {
     super._beforeTokenTransfer(from, to, tokenId, batchSize);
   }
 
-  function supportsInterface(bytes4 interfaceId) public view override(ERC721, ERC721Enumerable) returns (bool) {
+  function supportsInterface(bytes4 interfaceId) public view virtual override(ERC721, ERC721Enumerable) returns (bool) {
     return
       interfaceId == type(IERC6982).interfaceId ||
       interfaceId == type(IERC721Lockable).interfaceId ||

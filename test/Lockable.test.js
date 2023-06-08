@@ -20,7 +20,7 @@ describe("ERC721Lockable", function () {
   it("should verify the flow", async function () {
 
 
-    console.log(await myToken.getIERC6982Id());
+    // console.log(await myToken.getIERC6982Id());
 
     expect(await myToken.supportsInterface("0x2e4e0d27")).equal(true);
 

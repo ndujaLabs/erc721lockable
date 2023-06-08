@@ -134,6 +134,9 @@ Feel free to make a PR to add your implementation.
 
 ## History
 
+**0.6.3**
+- Fix missing virtual statements :-(
+
 **0.6.2**
 - fix issues in README about dependencies and usage
 - update IERC6982 to latest version
