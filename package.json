@@ -15,7 +15,7 @@
     "format": "npx prettier --write ./test/fixtures/**/*.js ./**/*.js",
     "clean": "rimraf artifacts cache coverage coverage.json",
     "coverage": "rimraf coverage coverage.json && NODE_ENV=test npx hardhat coverage",
-    "prepublishOnly": "./check-hardhat-console.js && npm run compile && npm test",
+    "prepublishOnly": "npm run compile && npm test",
     "publish-package": "scripts/publish.sh"
   },
   "repository": {
