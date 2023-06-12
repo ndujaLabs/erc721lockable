@@ -134,6 +134,9 @@ Feel free to make a PR to add your implementation.
 
 ## History
 
+**0.8.0**
+- Fix signature of `setLocker`, mistakenly set as `payable`
+
 **0.7.0**
 - Removes unnecessary checks on approvals
 
