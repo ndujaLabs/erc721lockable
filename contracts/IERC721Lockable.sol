@@ -24,7 +24,7 @@ interface IERC721Lockable is IERC6982 {
   // set a locker, if the actor that is locking it is a contract, it
   // should be approved
   // It should emit a LockerSet event
-  function setLocker(address pool) external payable;
+  function setLocker(address pool) external;
 
   // remove a locker
   // It should emit a LockerRemoved event
