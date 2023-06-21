@@ -12,7 +12,7 @@ interface IERC721Lockable is IERC6982 {
   event LockerRemoved(address locker);
   event ForcefullyUnlocked(uint256 tokenId);
 
-  // tells if a token is locked. Removed to extend IERC5192
+  // tells if a token is locked. Removed to extend IERC6982
   // function locked(uint256 tokenID) external view returns (bool);
 
   // tells the address of the contract which is locking a token
