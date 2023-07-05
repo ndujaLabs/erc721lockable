@@ -134,6 +134,9 @@ Feel free to make a PR to add your implementation.
 
 ## History
 
+**0.8.1**
+- Return `locked` returns the default locked status if not specific lock is set
+
 **0.8.0**
 - Fix signature of `setLocker`, mistakenly set as `payable`
 

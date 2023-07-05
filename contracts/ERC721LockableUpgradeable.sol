@@ -84,7 +84,7 @@ abstract contract ERC721LockableUpgradeable is
 
   function locked(uint256 tokenId) public view virtual override returns (bool) {
     require(_exists(tokenId), "Token does not exist");
-    return _lockedBy[tokenId] != address(0);
+    return _lockedBy[tokenId] != address(0) || _defaultLocked;
   }
 
   function lockerOf(uint256 tokenId) public view virtual override returns (address) {
