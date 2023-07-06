@@ -40,7 +40,7 @@ abstract contract ERC721LockableUpgradeable is
     updateDefaultLocked(defaultLocked_);
   }
 
-  function defaultLocked() external view override returns (bool) {
+  function defaultLocked() public view override returns (bool) {
     return _defaultLocked;
   }
 
@@ -134,7 +134,7 @@ abstract contract ERC721LockableUpgradeable is
   }
 
   // emergency function in case a compromised locker is removed
-  function unlockIfRemovedLocker(uint256 tokenId) external virtual override {
+  function unlockIfRemovedLocker(uint256 tokenId) public virtual override {
     require(locked(tokenId), "Not a locked tokenId");
     require(!_locker[_lockedBy[tokenId]], "Locker is still active");
     require(ownerOf(tokenId) == _msgSender(), "Not the asset owner");

@@ -134,6 +134,9 @@ Feel free to make a PR to add your implementation.
 
 ## History
 
+**0.9.0** / breaking
+- Make `defaultLocked` public, instead of external
+
 **0.8.1**
 - Return `locked` returns the default locked status if not specific lock is set
 
