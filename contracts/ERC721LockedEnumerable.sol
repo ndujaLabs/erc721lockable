@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 
 import "./IERC6982.sol";
 
-contract ERC721Locked is IERC6982, ERC721, ERC721Enumerable {
+contract ERC721LockedEnumerable is IERC6982, ERC721, ERC721Enumerable {
   error TransferNotAllowed();
 
   constructor(string memory name, string memory symbol) ERC721(name, symbol) {

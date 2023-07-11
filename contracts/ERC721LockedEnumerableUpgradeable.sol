@@ -7,7 +7,7 @@ import "@openzeppelin/contracts-upgradeable/token/ERC721/extensions/ERC721Enumer
 
 import "./IERC6982.sol";
 
-contract ERC721LockedUpgradeable is IERC6982, Initializable, ERC721Upgradeable, ERC721EnumerableUpgradeable {
+contract ERC721LockedEnumerableUpgradeable is IERC6982, Initializable, ERC721Upgradeable, ERC721EnumerableUpgradeable {
   error TransferNotAllowed();
 
   // solhint-disable-next-line func-name-mixedcase
