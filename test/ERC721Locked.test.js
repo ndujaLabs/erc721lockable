@@ -26,10 +26,10 @@ describe("ERC721Locked", function () {
 
     await expect(
       myBadge.connect(holder1)["safeTransferFrom(address,address,uint256)"](holder1.address, holder2.address, 1)
-    ).revertedWith("TransferNotAllowed()");
+    ).revertedWith("ERC721Locked: not transferable");
 
     await expect(myBadge.connect(holder1).transferFrom(holder1.address, holder2.address, 1)).revertedWith(
-      "TransferNotAllowed()"
+      "ERC721Locked: not transferable"
     );
   });
 });
