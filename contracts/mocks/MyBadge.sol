@@ -9,5 +9,4 @@ contract MyBadge is ERC721Locked {
   function safeMint(address to, uint256 tokenId) public {
     _safeMint(to, tokenId);
   }
-
 }

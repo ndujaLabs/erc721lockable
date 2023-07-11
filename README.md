@@ -134,7 +134,7 @@ Feel free to make a PR to add your implementation.
 
 ## History
 
-**0.9.2**
+**0.9.3**
 - Adding enumerable versions for Locked contracts
 
 **0.9.0** / breaking

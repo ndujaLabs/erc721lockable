@@ -22,11 +22,7 @@ abstract contract ERC721Lockable is IERC721Lockable, Ownable, ERC721, ERC721Enum
     _;
   }
 
-  constructor(
-    string memory name,
-    string memory symbol,
-    bool defaultLocked_
-  ) ERC721(name, symbol) {
+  constructor(string memory name, string memory symbol, bool defaultLocked_) ERC721(name, symbol) {
     updateDefaultLocked(defaultLocked_);
   }
 
@@ -125,5 +121,4 @@ abstract contract ERC721Lockable is IERC721Lockable, Ownable, ERC721, ERC721Enum
     delete _lockedBy[tokenId];
     emit ForcefullyUnlocked(tokenId);
   }
-
 }

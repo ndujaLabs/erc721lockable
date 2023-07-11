@@ -34,7 +34,11 @@ abstract contract ERC721LockableUpgradeable is
    * @dev Initializes the contract by setting a `name` and a `symbol` to the token collection.
    */
   // solhint-disable-next-line
-  function __ERC721Lockable_init(string memory name_, string memory symbol_, bool defaultLocked_) internal virtual onlyInitializing {
+  function __ERC721Lockable_init(
+    string memory name_,
+    string memory symbol_,
+    bool defaultLocked_
+  ) internal virtual onlyInitializing {
     __ERC721_init(name_, symbol_);
     __Ownable_init();
     updateDefaultLocked(defaultLocked_);
@@ -69,13 +73,9 @@ abstract contract ERC721LockableUpgradeable is
     super._beforeTokenTransfer(from, to, tokenId, batchSize);
   }
 
-  function supportsInterface(bytes4 interfaceId)
-    public
-    view
-    override(ERC721Upgradeable, ERC721EnumerableUpgradeable)
-    virtual
-    returns (bool)
-  {
+  function supportsInterface(
+    bytes4 interfaceId
+  ) public view virtual override(ERC721Upgradeable, ERC721EnumerableUpgradeable) returns (bool) {
     return
       interfaceId == type(IERC6982).interfaceId ||
       interfaceId == type(IERC721Lockable).interfaceId ||

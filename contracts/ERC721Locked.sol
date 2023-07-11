@@ -13,9 +13,7 @@ contract ERC721Locked is IERC6982, ERC721 {
   }
 
   function supportsInterface(bytes4 interfaceId) public view virtual override returns (bool) {
-    return
-      interfaceId == type(IERC6982).interfaceId ||
-      super.supportsInterface(interfaceId);
+    return interfaceId == type(IERC6982).interfaceId || super.supportsInterface(interfaceId);
   }
 
   function locked(uint256) external view virtual returns (bool) {

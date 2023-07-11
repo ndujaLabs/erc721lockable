@@ -16,16 +16,18 @@ contract ERC721LockedEnumerableUpgradeable is IERC6982, Initializable, ERC721Upg
     emit DefaultLocked(true);
   }
 
-  function supportsInterface(bytes4 interfaceId) public view virtual override(ERC721Upgradeable, ERC721EnumerableUpgradeable) returns (bool) {
-    return
-    interfaceId == type(IERC6982).interfaceId ||
-    super.supportsInterface(interfaceId);
+  function supportsInterface(
+    bytes4 interfaceId
+  ) public view virtual override(ERC721Upgradeable, ERC721EnumerableUpgradeable) returns (bool) {
+    return interfaceId == type(IERC6982).interfaceId || super.supportsInterface(interfaceId);
   }
 
-  function _beforeTokenTransfer(address from, address to, uint256 tokenId, uint256 batchSize)
-  internal
-  override(ERC721Upgradeable, ERC721EnumerableUpgradeable)
-  {}
+  function _beforeTokenTransfer(
+    address from,
+    address to,
+    uint256 tokenId,
+    uint256 batchSize
+  ) internal virtual override(ERC721Upgradeable, ERC721EnumerableUpgradeable) {}
 
   function locked(uint256) external view virtual returns (bool) {
     return true;
@@ -39,7 +41,12 @@ contract ERC721LockedEnumerableUpgradeable is IERC6982, Initializable, ERC721Upg
     revert TransferNotAllowed();
   }
 
-  function safeTransferFrom(address, address, uint256, bytes memory) public virtual override(IERC721Upgradeable, ERC721Upgradeable) {
+  function safeTransferFrom(
+    address,
+    address,
+    uint256,
+    bytes memory
+  ) public virtual override(IERC721Upgradeable, ERC721Upgradeable) {
     revert TransferNotAllowed();
   }
 }
