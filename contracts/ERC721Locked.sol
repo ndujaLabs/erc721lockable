@@ -39,7 +39,7 @@ contract ERC721Locked is IERC6982, Context, ERC165, IERC721, IERC721Metadata {
 
   /**
    * @dev Initializes the contract by setting a `name` and a `symbol` to the token collection.
-     */
+   */
   constructor(string memory name_, string memory symbol_) {
     _name = name_;
     _symbol = symbol_;
@@ -48,18 +48,18 @@ contract ERC721Locked is IERC6982, Context, ERC165, IERC721, IERC721Metadata {
 
   /**
    * @dev See {IERC165-supportsInterface}.
-     */
+   */
   function supportsInterface(bytes4 interfaceId) public view virtual override(ERC165, IERC165) returns (bool) {
     return
-    interfaceId == type(IERC6982).interfaceId ||
-    interfaceId == type(IERC721).interfaceId ||
-    interfaceId == type(IERC721Metadata).interfaceId ||
-    super.supportsInterface(interfaceId);
+      interfaceId == type(IERC6982).interfaceId ||
+      interfaceId == type(IERC721).interfaceId ||
+      interfaceId == type(IERC721Metadata).interfaceId ||
+      super.supportsInterface(interfaceId);
   }
 
   /**
    * @dev See {IERC721-balanceOf}.
-     */
+   */
   function balanceOf(address owner) public view virtual override returns (uint256) {
     require(owner != address(0), "ERC721Locked: address zero is not a valid owner");
     return _balances[owner];
@@ -67,7 +67,7 @@ contract ERC721Locked is IERC6982, Context, ERC165, IERC721, IERC721Metadata {
 
   /**
    * @dev See {IERC721-ownerOf}.
-     */
+   */
   function ownerOf(uint256 tokenId) public view virtual override returns (address) {
     address owner = _ownerOf(tokenId);
     require(owner != address(0), "ERC721Locked: invalid token ID");
@@ -76,21 +76,21 @@ contract ERC721Locked is IERC6982, Context, ERC165, IERC721, IERC721Metadata {
 
   /**
    * @dev See {IERC721Metadata-name}.
-     */
+   */
   function name() public view virtual override returns (string memory) {
     return _name;
   }
 
   /**
    * @dev See {IERC721Metadata-symbol}.
-     */
+   */
   function symbol() public view virtual override returns (string memory) {
     return _symbol;
   }
 
   /**
    * @dev See {IERC721Metadata-tokenURI}.
-     */
+   */
   function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
     _requireMinted(tokenId);
 
@@ -100,23 +100,23 @@ contract ERC721Locked is IERC6982, Context, ERC165, IERC721, IERC721Metadata {
 
   /**
    * @dev Base URI for computing {tokenURI}. If set, the resulting URI for each
-     * token will be the concatenation of the `baseURI` and the `tokenId`. Empty
-     * by default, can be overridden in child contracts.
-     */
+   * token will be the concatenation of the `baseURI` and the `tokenId`. Empty
+   * by default, can be overridden in child contracts.
+   */
   function _baseURI() internal view virtual returns (string memory) {
     return "";
   }
 
   /**
    * @dev See {IERC721-approve}.
-     */
-  function approve(address , uint256 ) public virtual override {
+   */
+  function approve(address, uint256) public virtual override {
     revert("ERC721Locked: not approvable");
   }
 
   /**
    * @dev See {IERC721-getApproved}.
-     */
+   */
   function getApproved(uint256 tokenId) public view virtual override returns (address) {
     _requireMinted(tokenId);
     return address(0);
@@ -125,51 +125,39 @@ contract ERC721Locked is IERC6982, Context, ERC165, IERC721, IERC721Metadata {
   function _ownerOf(uint256 tokenId) internal view virtual returns (address) {
     return _owners[tokenId];
   }
+
   /**
    * @dev See {IERC721-setApprovalForAll}.
-     */
-  function setApprovalForAll(address , bool ) public virtual override {
+   */
+  function setApprovalForAll(address, bool) public virtual override {
     revert("ERC721Locked: not approvable");
   }
 
   /**
    * @dev See {IERC721-isApprovedForAll}.
-     */
-  function isApprovedForAll(address , address ) public view virtual override returns (bool) {
+   */
+  function isApprovedForAll(address, address) public view virtual override returns (bool) {
     return false;
   }
 
   /**
    * @dev See {IERC721-transferFrom}.
-     */
-  function transferFrom(
-    address,
-    address,
-    uint256
-  ) public virtual override {
+   */
+  function transferFrom(address, address, uint256) public virtual override {
     revert("ERC721Locked: not transferable");
   }
 
   /**
    * @dev See {IERC721-safeTransferFrom}.
-     */
-  function safeTransferFrom(
-    address ,
-    address ,
-    uint256
-  ) public virtual override {
+   */
+  function safeTransferFrom(address, address, uint256) public virtual override {
     revert("ERC721Locked: not transferable");
   }
 
   /**
    * @dev See {IERC721-safeTransferFrom}.
-     */
-  function safeTransferFrom(
-    address ,
-    address ,
-    uint256 ,
-    bytes memory
-  ) public virtual override {
+   */
+  function safeTransferFrom(address, address, uint256, bytes memory) public virtual override {
     revert("ERC721Locked: not transferable");
   }
 
@@ -187,41 +175,36 @@ contract ERC721Locked is IERC6982, Context, ERC165, IERC721, IERC721Metadata {
 
   /**
    * @dev Same as {xref-ERC721-_safeMint-address-uint256-}[`_safeMint`], with an additional `data` parameter which is
-     * forwarded in {IERC721Receiver-onERC721Received} to contract recipients.
-     */
-  function _safeMint(
-    address to,
-    uint256 tokenId,
-    bytes memory data
-  ) internal virtual {
+   * forwarded in {IERC721Receiver-onERC721Received} to contract recipients.
+   */
+  function _safeMint(address to, uint256 tokenId, bytes memory data) internal virtual {
     _mint(to, tokenId);
-    require(
-      _checkOnERC721Received(address(0), to, tokenId, data),
-      "ERC721Locked: transfer to non ERC721Receiver implementer"
-    );
+    require(_checkOnERC721Received(address(0), to, tokenId, data), "ERC721Locked: transfer to non ERC721Receiver implementer");
   }
 
   /**
    * @dev Mints `tokenId` and transfers it to `to`.
-     *
-     * WARNING: Usage of this method is discouraged, use {_safeMint} whenever possible
-     *
-     * Requirements:
-     *
-     * - `tokenId` must not exist.
-     * - `to` cannot be the zero address.
-     *
-     * Emits a {Transfer} event.
-     */
+   *
+   * WARNING: Usage of this method is discouraged, use {_safeMint} whenever possible
+   *
+   * Requirements:
+   *
+   * - `tokenId` must not exist.
+   * - `to` cannot be the zero address.
+   *
+   * Emits a {Transfer} event.
+   */
   function _mint(address to, uint256 tokenId) internal virtual {
     require(to != address(0), "ERC721Locked: mint to the zero address");
     require(!_exists(tokenId), "ERC721Locked: token already minted");
 
+    _beforeTokenTransfer(address(0), to, tokenId, 1);
+
     unchecked {
-    // Will not overflow unless all 2**256 token ids are minted to the same owner.
-    // Given that tokens are minted one by one, it is impossible in practice that
-    // this ever happens. Might change if we allow batch minting.
-    // The ERC fails to describe this case.
+      // Will not overflow unless all 2**256 token ids are minted to the same owner.
+      // Given that tokens are minted one by one, it is impossible in practice that
+      // this ever happens. Might change if we allow batch minting.
+      // The ERC fails to describe this case.
       _balances[to] += 1;
     }
 
@@ -230,12 +213,23 @@ contract ERC721Locked is IERC6982, Context, ERC165, IERC721, IERC721Metadata {
     emit Transfer(address(0), to, tokenId);
   }
 
-  function _checkOnERC721Received(
+  function _beforeTokenTransfer(
     address from,
     address to,
-    uint256 tokenId,
-    bytes memory data
-  ) private returns (bool) {
+    uint256, /* firstTokenId */
+    uint256 batchSize
+  ) internal virtual {
+    if (batchSize > 1) {
+      if (from != address(0)) {
+        _balances[from] -= batchSize;
+      }
+      if (to != address(0)) {
+        _balances[to] += batchSize;
+      }
+    }
+  }
+
+  function _checkOnERC721Received(address from, address to, uint256 tokenId, bytes memory data) private returns (bool) {
     if (to.isContract()) {
       try IERC721Receiver(to).onERC721Received(_msgSender(), from, tokenId, data) returns (bytes4 retval) {
         return retval == IERC721Receiver.onERC721Received.selector;
@@ -261,6 +255,4 @@ contract ERC721Locked is IERC6982, Context, ERC165, IERC721, IERC721Metadata {
   function defaultLocked() external view virtual returns (bool) {
     return true;
   }
-
-
 }

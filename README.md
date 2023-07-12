@@ -134,9 +134,12 @@ Feel free to make a PR to add your implementation.
 
 ## History
 
+**0.10.1**
+- Fix issues with numerability
+
 **0.10.0**
 - Adding enumerable versions for Locked contracts
-~~~~- Optimize Locked contract removing unused functions
+- Optimize Locked contract removing unused functions
 
 **0.9.0** / breaking
 - Make `defaultLocked` public, instead of external

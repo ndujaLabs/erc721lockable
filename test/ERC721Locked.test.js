@@ -13,8 +13,15 @@ describe("ERC721Locked", function () {
   beforeEach(async function () {
     myBadge = await deployContract("MyBadge");
 
-    await myBadge.safeMint(holder1.address, 1);
-    await myBadge.safeMint(holder2.address, 2);
+    await expect(myBadge.safeMint(holder1.address, 1))
+        .emit(myBadge, "Transfer")
+        .withArgs(ethers.constants.AddressZero, holder1.address, 1);
+
+    expect(await myBadge.tokenOfOwnerByIndex(holder1.address, 0)).equal(1);
+
+    await expect(myBadge.safeMint(holder2.address, 2))
+        .emit(myBadge, "Transfer")
+        .withArgs(ethers.constants.AddressZero, holder2.address, 2);
     await myBadge.safeMint(holder3.address, 3);
 
     await myBadge.safeMint(holder1.address, 4);
@@ -31,5 +38,8 @@ describe("ERC721Locked", function () {
     await expect(myBadge.connect(holder1).transferFrom(holder1.address, holder2.address, 1)).revertedWith(
       "ERC721Locked: not transferable"
     );
+
+
+
   });
 });
