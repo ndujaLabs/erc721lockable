@@ -134,6 +134,9 @@ Feel free to make a PR to add your implementation.
 
 ## History
 
+**0.11.0**
+- Fix naming issue in ERC721LockedEnumerableUpgradeable, previously called ERC721LockedEnumerable by mistake
+
 **0.10.1**
 - Fix issues with numerability
 
