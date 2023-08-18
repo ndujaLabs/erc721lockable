@@ -6,7 +6,7 @@ import "@openzeppelin/contracts-upgradeable/token/ERC721/extensions/IERC721Enume
 
 import "./IERC6982.sol";
 
-contract ERC721LockedEnumerable is ERC721LockedUpgradeable, IERC721EnumerableUpgradeable {
+contract ERC721LockedEnumerableUpgradeable is ERC721LockedUpgradeable, IERC721EnumerableUpgradeable {
   mapping(address => mapping(uint256 => uint256)) private _ownedTokens;
 
   // Mapping from token ID to index of the owner tokens list
@@ -27,7 +27,7 @@ contract ERC721LockedEnumerable is ERC721LockedUpgradeable, IERC721EnumerableUpg
    * @dev See {IERC721EnumerableUpgradeable-tokenOfOwnerByIndex}.
    */
   function tokenOfOwnerByIndex(address owner, uint256 index) public view virtual override returns (uint256) {
-    require(index < ERC721LockedUpgradeable.balanceOf(owner), "ERC721LockedEnumerable: owner index out of bounds");
+    require(index < ERC721LockedUpgradeable.balanceOf(owner), "ERC721LockedEnumerableUpgradeable: owner index out of bounds");
     return _ownedTokens[owner][index];
   }
 
@@ -42,7 +42,7 @@ contract ERC721LockedEnumerable is ERC721LockedUpgradeable, IERC721EnumerableUpg
    * @dev See {IERC721EnumerableUpgradeable-tokenByIndex}.
    */
   function tokenByIndex(uint256 index) public view virtual override returns (uint256) {
-    require(index < ERC721LockedEnumerable.totalSupply(), "ERC721LockedEnumerable: global index out of bounds");
+    require(index < totalSupply(), "ERC721LockedEnumerableUpgradeable: global index out of bounds");
     return _allTokens[index];
   }
 
