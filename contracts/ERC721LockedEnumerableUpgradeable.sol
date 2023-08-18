@@ -27,7 +27,7 @@ contract ERC721LockedEnumerableUpgradeable is ERC721LockedUpgradeable, IERC721En
    * @dev See {IERC721EnumerableUpgradeable-tokenOfOwnerByIndex}.
    */
   function tokenOfOwnerByIndex(address owner, uint256 index) public view virtual override returns (uint256) {
-    require(index < ERC721LockedUpgradeable.balanceOf(owner), "ERC721LockedEnumerable: owner index out of bounds");
+    require(index < ERC721LockedUpgradeable.balanceOf(owner), "ERC721LockedEnumerableUpgradeable: owner index out of bounds");
     return _ownedTokens[owner][index];
   }
 
@@ -42,7 +42,7 @@ contract ERC721LockedEnumerableUpgradeable is ERC721LockedUpgradeable, IERC721En
    * @dev See {IERC721EnumerableUpgradeable-tokenByIndex}.
    */
   function tokenByIndex(uint256 index) public view virtual override returns (uint256) {
-    require(index < totalSupply(), "ERC721LockedEnumerable: global index out of bounds");
+    require(index < totalSupply(), "ERC721LockedEnumerableUpgradeable: global index out of bounds");
     return _allTokens[index];
   }
 
