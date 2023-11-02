@@ -92,10 +92,8 @@ interface IERC6982 {
 
 To install it, launch 
 ``` 
-npm i -d attributable
+npm i -d @ndujalabs/erc721lockable @openzeppelin/contracts @openzeppelin/contracts-upgradeable
 ```
-
-You may need to install the peer dependencies too, i.e., the OpenZeppelin contracts.
 
 To use the interface, in your smart contract import what you need as
 
