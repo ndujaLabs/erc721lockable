@@ -62,6 +62,18 @@ const Helpers = {
     await this.ethers.provider.send("evm_increaseTime", [offset]);
     await this.ethers.provider.send("evm_mine");
   },
+
+  async getInterfaceId(interfaceName) {
+    const artifact = await hre.artifacts.readArtifact(interfaceName);
+    const abi = artifact.abi;
+    const functions = abi.filter((item) => item.type === "function");
+    let interfaceId = ethers.constants.Zero;
+    functions.forEach((func) => {
+      const selector = ethers.utils.id(func.name + "(" + func.inputs.map((input) => input.type).join(",") + ")").slice(0, 10);
+      interfaceId = interfaceId.xor(selector);
+    });
+    return interfaceId.toHexString();
+  },
 };
 
 module.exports = Helpers;

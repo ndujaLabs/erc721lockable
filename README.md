@@ -14,11 +14,14 @@ pragma solidity ^0.8.4;
 // Author:
 // Francesco Sullo <francesco@sullo.co>
 
-// ERC165 interface id is 0x2e4e0d27
-interface IERC721Lockable is IERC5192 {
+// ERC165 interface id is 0x452faa60
+interface IERC721Lockable is IERC6982 {
   event LockerSet(address locker);
   event LockerRemoved(address locker);
   event ForcefullyUnlocked(uint256 tokenId);
+
+  // tells if a token is locked. Removed to extend IERC6982
+  // function locked(uint256 tokenID) external view returns (bool);
 
   // tells the address of the contract which is locking a token
   function lockerOf(uint256 tokenID) external view returns (address);
@@ -132,11 +135,14 @@ Feel free to make a PR to add your implementation.
 
 ## History
 
+**0.12.0**
+- Fix README
+
 **0.11.0**
 - Fix naming issue in ERC721LockedEnumerableUpgradeable, previously called ERC721LockedEnumerable by mistake
 
 **0.10.1**
-- Fix issues with numerability
+- Fix issues with enumerability
 
 **0.10.0**
 - Adding enumerable versions for Locked contracts

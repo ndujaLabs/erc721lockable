@@ -6,7 +6,7 @@ pragma solidity ^0.8.19;
 
 import "./IERC6982.sol";
 
-// ERC165 interface id is 0x2e4e0d27
+// ERC165 interface id is 0x452faa60
 interface IERC721Lockable is IERC6982 {
   event LockerSet(address locker);
   event LockerRemoved(address locker);

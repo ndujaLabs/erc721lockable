@@ -1,5 +1,5 @@
 const {expect} = require("chai");
-const {deployContractUpgradeable, deployContract, number} = require("./helpers");
+const {deployContractUpgradeable, deployContract, number, getInterfaceId} = require("./helpers");
 
 describe("ERC721Locked", function () {
   let myBadge;
@@ -28,6 +28,8 @@ describe("ERC721Locked", function () {
   });
 
   it("should verify the properties of the badge", async function () {
+
+    expect(await getInterfaceId("IERC721Lockable")).equal("0x452faa60");
 
     expect(await myBadge.locked(1)).equal(true);
 
